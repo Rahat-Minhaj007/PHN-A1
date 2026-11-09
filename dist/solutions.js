@@ -1,17 +1,60 @@
 "use strict";
-// 1
-// const multiplyValue = (value: number, multiplier: number = 2): number => {
-//   return value * multiplier;
-// };
+const multiplyValue = (value, multiplier = 2) => {
+    return value * multiplier;
+};
+const processInput = (input) => {
+    if (typeof input === "string") {
+        return input.trim().toLowerCase();
+    }
+    else if (typeof input === "number") {
+        return input * 10;
+    }
+    return input ? "Active" : "Inactive";
+};
+const formatCoordinate = (coordinate) => {
+    return `Location: ${coordinate[2]} (${coordinate[0]}, ${coordinate[1]})`;
+};
+const concatenateArrays = (...array) => {
+    return array.flat();
+};
 const getPopularCourses = (courses, minStudents) => {
     const output = courses.filter((course) => course.students >= minStudents && course.isPublished);
     return output;
 };
-// Sample Input:
-const courses = [
-    { title: "TypeScript Mastery", students: 120, isPublished: true },
-    { title: "Draft Course", students: 200, isPublished: false },
-    { title: "Basic HTML", students: 45, isPublished: true },
-    { title: "Next.js Pro", students: 85, isPublished: true }
-];
-console.log(getPopularCourses(courses, 80));
+const pluckValues = (items, key) => {
+    const returnArray = items.map((obj) => obj[key]);
+    return returnArray;
+};
+class Employee {
+    name;
+    baseSalary;
+    constructor(name, baseSalary) {
+        this.name = name;
+        this.baseSalary = baseSalary;
+    }
+    getDetails() {
+        return `Employee: ${this.name}, Base Salary: ${this.baseSalary}`;
+    }
+}
+class Manager extends Employee {
+    department;
+    constructor(name, baseSalary, department) {
+        super(name, baseSalary);
+        this.department = department;
+    }
+    getRoleInfo() {
+        return `Manager of ${this.department}: ${this.name}`;
+    }
+}
+const validateAgeAsync = async (age) => {
+    return new Promise((resolve, reject) => {
+        if (age >= 18) {
+            setTimeout(() => {
+                resolve("Access Granted");
+            }, 1000);
+        }
+        else {
+            reject(new Error("Access Denied: Must be 18 or older"));
+        }
+    });
+};

@@ -1,41 +1,33 @@
-// 1
-// const multiplyValue = (value: number, multiplier: number = 2): number => {
-//   return value * multiplier;
-// };
+const multiplyValue = (value: number, multiplier: number = 2): number => {
+  return value * multiplier;
+};
 
-// 2
-// type statusType = "Active" | "Inactive";
-// type processInputType = string | number | boolean;
-// type processOutputType = string | number | statusType;
+type statusType = "Active" | "Inactive";
+type processInputType = string | number | boolean;
+type processOutputType = string | number | statusType;
 
-// const processInput = (input: processInputType): processOutputType => {
-//   if (typeof input === "string") {
-//     return input.trim().toLocaleLowerCase();
-//   } else if (typeof input === "number") {
-//     return input * 10;
-//   }
-//   return input ? "Active" : "Inactive";
-// };
+const processInput = (input: processInputType): processOutputType => {
+  if (typeof input === "string") {
+    return input.trim().toLowerCase();
+  } else if (typeof input === "number") {
+    return input * 10;
+  }
+  return input ? "Active" : "Inactive";
+};
 
-// console.log(processInput("  TypeScript  ")); // Output: "hello world"
-// console.log(processInput(7)); // Output: 7
-// console.log(processInput(true)); // Output: "Active"
-// console.log(processInput(false)); // Output: "Inactive"
+type CoordinateType = readonly [
+  latitude: number,
+  longitude: number,
+  locationName: string,
+];
+const formatCoordinate = (coordinate: CoordinateType): string => {
+  return `Location: ${coordinate[2]} (${coordinate[0]}, ${coordinate[1]})`;
+};
 
-// 3
-// type Coordinate = readonly [
-//   latitude: number,
-//   longitude: number,
-//   locationName: string,
-// ];
-// const formatCoordinate = (coordinate: Coordinate): string => {
-//   return `Location: ${coordinate[2]} (${coordinate[0]}, ${coordinate[1]})`;
-// };
+const concatenateArrays = <T>(...array: T[][]): T[] => {
+  return array.flat();
+};
 
-// console.log(formatCoordinate([23.81, 90.41, "Dhaka"]), "\n");
-// console.log(formatCoordinate([22.35, 91.78, "Chittagong"]), "\n");
-
-// 4
 interface Course {
   title: string;
   students: number;
@@ -53,13 +45,43 @@ const getPopularCourses = (
   return output;
 };
 
+const pluckValues = <T, K extends keyof T>(items: T[], key: K): T[K][] => {
+  const returnArray = items.map((obj) => obj[key]);
+  return returnArray;
+};
 
-// Sample Input:
-const courses = [
-  { title: "TypeScript Mastery", students: 120, isPublished: true },
-  { title: "Draft Course", students: 200, isPublished: false },
-  { title: "Basic HTML", students: 45, isPublished: true },
-  { title: "Next.js Pro", students: 85, isPublished: true }
-];
+class Employee {
+  constructor(
+    protected name: string,
+    private baseSalary: number,
+  ) {}
 
-console.log(getPopularCourses(courses, 80));
+  getDetails() {
+    return `Employee: ${this.name}, Base Salary: ${this.baseSalary}`;
+  }
+}
+
+class Manager extends Employee {
+  private department: string;
+
+  constructor(name: string, baseSalary: number, department: string) {
+    super(name, baseSalary);
+    this.department = department;
+  }
+
+  getRoleInfo() {
+    return `Manager of ${this.department}: ${this.name}`;
+  }
+}
+
+const validateAgeAsync = async (age: number): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    if (age >= 18) {
+      setTimeout(() => {
+        resolve("Access Granted");
+      }, 1000);
+    } else {
+      reject(new Error("Access Denied: Must be 18 or older"));
+    }
+  });
+};
