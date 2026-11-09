@@ -11,8 +11,9 @@ const processInput = (input: processInputType): processOutputType => {
     return input.trim().toLowerCase();
   } else if (typeof input === "number") {
     return input * 10;
+  } else {
+    return input ? "Active" : "Inactive";
   }
-  return input ? "Active" : "Inactive";
 };
 
 type CoordinateType = readonly [
@@ -25,7 +26,14 @@ const formatCoordinate = (coordinate: CoordinateType): string => {
 };
 
 const concatenateArrays = <T>(...array: T[][]): T[] => {
-  return array.flat();
+  const newArr: T[] = [];
+  array.forEach((elementArray) => {
+    for (let i = 0; i < elementArray.length; i++) {
+      const val = elementArray[i];
+      newArr.push(val);
+    }
+  });
+  return newArr;
 };
 
 interface Course {

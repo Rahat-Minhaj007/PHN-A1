@@ -9,13 +9,22 @@ const processInput = (input) => {
     else if (typeof input === "number") {
         return input * 10;
     }
-    return input ? "Active" : "Inactive";
+    else {
+        return input ? "Active" : "Inactive";
+    }
 };
 const formatCoordinate = (coordinate) => {
     return `Location: ${coordinate[2]} (${coordinate[0]}, ${coordinate[1]})`;
 };
 const concatenateArrays = (...array) => {
-    return array.flat();
+    const newArr = [];
+    array.forEach((elementArray) => {
+        for (let i = 0; i < elementArray.length; i++) {
+            const val = elementArray[i];
+            newArr.push(val);
+        }
+    });
+    return newArr;
 };
 const getPopularCourses = (courses, minStudents) => {
     const output = courses.filter((course) => course.students >= minStudents && course.isPublished);

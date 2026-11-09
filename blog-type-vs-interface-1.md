@@ -1,26 +1,27 @@
-# Type Alias vs Interface in TypeScript
+# Type Alias vs Interface
 
-There are three main differences between `type` and `interface`.
+There are 3 main differences in between type alias and interface
 
-### 1. What can they define?
+### 1. The first difference on definition?
 
-A **type alias** allows us to create custom types. We can use it for objects, unions, tuples, primitives, and many other types.
+A _type alias_ give us the permission to create custom types. We can use it for objects, unions, tuples, primitives, and many other types.
 
-An **interface** is mainly used to define the structure of objects.
+An _interface_ is mainly used to define the structure of objects also we can define function structure using it.
 
 ```ts
-type Status = "success" | "error";
-type User = { name: string; age: number };
+type Status = "Active" | "Inactive";
+type Vehicle = { Make: string; Model: string; milage: number };
 
-interface Product {
-  name: string;
-  price: number;
+interface Vehicle {
+  Make: string;
+  Model: string;
+  milage: number;
 }
 ```
 
-### 2. Extending and merging types
+### 2. Second difference on extending and merging
 
-With `interface`, we can use `extends` to combine interfaces.
+with interface we can combine two interface using extends keyword
 
 ```ts
 interface Vehicle {
@@ -33,36 +34,35 @@ interface Bus extends Vehicle {
 }
 ```
 
-Now `Bus` contains all the properties of `Vehicle`, along with its own `horn` property.
+Now bus has all the properties of vehicle along with it's own horn property
 
-With a type alias, we use the intersection operator (`&`) to combine types.
+With a type alias we use the intersection operator (&) to combine types.
+In type alias we can get the same thing using intersection operator to combine two types
 
 ```ts
 type Vehicle = { fuel: string; mileage: number };
 type Bus = Vehicle & { horn: string };
 ```
 
-### 3. Declaration merging
+### 3. third difference on declaring
 
 Interfaces with the same name can be merged automatically.
+In interface if we declare 
 
 ```ts
-interface Animal {
+interface User {
   name: string;
 }
 
-interface Animal {
-  age: number;
+interface User {
+  phone: number;
 }
 ```
 
-Now `Animal` has both `name` and `age`.
+Now User has both name and phone.
 
-However, declaring two type aliases with the same name causes an error.
+If we do the same thing using type alias it will give error and it's not permitted
 
 ### When should we use which?
 
-- Use **interface** to define API response objects, object structures, and extend or augment existing interfaces from libraries.
-- Use **type** for unions, tuples, utility types like `Pick`, `Omit`, and `Partial`, and other custom type combinations.
-
-**My rule:** Use `interface` for object shapes and `type` when creating more complex or flexible types. Both are useful, and the choice depends on the situation.
+Use interface for object shapes and type when creating more complex or flexible types unions, tuples, utility types like Pick, Omit etc. Both are useful, and the choice depends on the situation.
