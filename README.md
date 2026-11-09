@@ -5,7 +5,7 @@ This assignment concentrated on progressing from basic TypeScript to advanced Ty
 
 ### Blog Link:
 
-### 1.Blog-1: [Type Alias vs Interface](https://github.com/Rahat-Minhaj007/PHN-A1/blob/main/blog-type-vs-interface-1.md)
+### 1.Blog-1: [Type Alias vs Interface](blog-type-vs-interface-1.md)
 
 
-### 1.Blog-2: [Access Modifiers](https://github.com/Rahat-Minhaj007/PHN-A1/blob/main/blog-access-modifiers-2.md)
+### 1.Blog-2: [Access Modifiers](blog-access-modifiers-2.md)
